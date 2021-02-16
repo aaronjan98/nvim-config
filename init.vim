@@ -154,3 +154,5 @@ nnoremap tj   :tabprev<CR>
 nnoremap th   :tabfirst<CR>
 nnoremap tl   :tablast<CR>
 
+" greatest remap
+vnoremap <leader>p "_dp"
