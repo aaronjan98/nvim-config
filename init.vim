@@ -30,6 +30,8 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 " Syntax Highlighting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" multi-cursor editing
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ key binding alterations and general vim configurations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,6 +41,13 @@ let g:gruvbox_hls_cursor = 'aqua'
 let g:gruvbox_italicize_strings = '1'
 colorscheme gruvbox
 set background=dark    " Setting dark mode
+
+" set wrap linebreak breakindent breakindentopt=shift:4
+" enable indentation
+set wrap linebreak
+set breakindent
+" indent by an additional 2 characters on wrapped lines, when line >= 40 characters, put 'showbreak' at start of line
+set breakindentopt=shift:3
 
 " Control P, configurations aren't working
 " let g:ctrlp_map = '<leader>p'
@@ -90,7 +99,6 @@ set incsearch
 
 syntax on
 " set colorcolumn=90
-set nowrap
 set smartcase
 set hlsearch
 set noerrorbells
