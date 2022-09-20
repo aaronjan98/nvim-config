@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'francoiscabrol/ranger.vim'                       " file search
     Plug 'rbgrouleff/bclose.vim'                           " vim opens ranger when opening a dir
     Plug 'ctrlpvim/ctrlp.vim'                              " fuzzy search
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}        " Syntax Highlighting
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}    " multi-cursor editing
     " Plug 'codota/tabnine-vim'                              " Intellisense
     Plug 'jiangmiao/auto-pairs'                            " Auto complete closing brackets
