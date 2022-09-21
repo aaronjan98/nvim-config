@@ -2,12 +2,26 @@
 let g:mapleader = ' '
 let s:fontsize = 12
 
-" set tags=~/Documents/gordian/gordian-airline-api/tagsfile;
+" UltiSnippets
+let g:UltiSnipsEdit="vertical"
+let g:UltiSnipsJumpForwardTrigger="<c-b"
+let g:UltiSnipsJumpBackwardTrigger="<c-z"
+
 " check the current folder for tags file and keep going one directory up all the way to the root folder.
 set tags+=tags;/
 syntax enable                           " Enables syntax highlighing
 " filetype plugin on                      " Needed for Nerd Commenter as the plugin makes use of |commentstring|
+
+" File Find {{{
+
+set path+=**
+set wildmenu
+set wildignore+=**/node_modules/**
 set hidden                              " Required to keep multiple buffers open multiple buffers
+
+" }}}
+
+
 set nowrap
 set sidescrolloff=20
 " set wrap linebreak                      " Format long lines by wrapping then on linebreaks 
