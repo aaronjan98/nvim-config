@@ -10,11 +10,12 @@
 Session.vim
 Sessionx.vim
 
-# Plugins
+# Dirs
 plugged
 autoload
 themes
 spell
+lua_0
 
 # Temporary
 .netrwhist
