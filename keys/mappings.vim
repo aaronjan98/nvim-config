@@ -49,7 +49,7 @@ nnoremap <Leader><Leader> <Esc>
 
 " list buffers so that you can switch faster
 nnoremap <Leader>v :buffers<CR>:b
-nnoremap <Leader>3 :b#<CR>
+nnoremap gb :b#<CR>
 
 " cnoremap :format :!format %
 
@@ -102,7 +102,10 @@ cnoreabbrev ranger Ranger
 cnoreabbrev difc DiffChangesDiffToggle
 
 abb bc because
+abb btwn between
+abb diff different
 abb wo without
+abb w with
 abb w\\/ with
 abb tho though
 abb ex example
@@ -110,6 +113,8 @@ abb ppl people
 abb mm movement
 abb mt mountain
 abb rn right now
+abb maj major
+abb min minor
 
 " go to definitions of functions, modules, constants, classes, types, etc.
 "nnoremap gd :YcmCompleter GoTo<CR>
