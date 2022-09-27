@@ -1,3 +1,7 @@
+filetype plugin on
+
+lua require('config')
+
 " set leader key
 let g:mapleader = ' '
 let s:fontsize = 12
