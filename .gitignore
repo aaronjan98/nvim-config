@@ -12,6 +12,7 @@ Sessionx.vim
 
 # Dirs
 plugged
+plugin
 autoload
 themes
 spell
