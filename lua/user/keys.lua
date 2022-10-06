@@ -50,9 +50,12 @@ map("v", "p", '"_dP', {})
 -- fix Y behaviour
 vim.keymap.set('n', 'Y', 'y$')
 
-vim.keymap.set('n', '<C-l>', ':nohl<CR>', {}) -- clear highlight
 -- 'Q' in normal mode enters Ex mode.  Remap to break text to new lines
 map('n', 'Q', 'gq', {})
 -- add line above in insert mode
 map('i', 'OO', '<Esc>O', {})
 
+-- Nvimtree
+map('n', '<leader>e', ':NvimTreeToggle<cr>', {})
+-- null-ls
+map('n', '<leader>f', ':lua vim.lsp.buf.formatting_seq_sync()<cr>', {})

@@ -111,7 +111,7 @@ return packer.startup({
     use "numToStr/Comment.nvim" -- Comment
 
     -- use "lewis6991/gitsigns.nvim" -- gitsigns
-    -- use "kyazdani42/nvim-tree.lua" -- nvim tree
+    use "kyazdani42/nvim-tree.lua" -- nvim tree
     -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
     -- use "moll/vim-bbye"
     -- use "ahmedkhalf/project.nvim"
