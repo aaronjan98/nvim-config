@@ -79,12 +79,13 @@ return packer.startup({
 
     -- use "lewis6991/impatient.nvim" -- fast startup
 
-    -- -- lsp config
-    -- use "neovim/nvim-lspconfig"
-    -- use "williamboman/nvim-lsp-installer"
+    -- LSP
+    use({ "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" }) -- enable LSP
+    use({ "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" }) -- simple to use language server installer
+    use({ "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" }) -- for formatters and linters
 
     -- use "hrsh7th/nvim-pasta" -- Cycle yank history
-    
+
     -- cmp plugins
     use({ "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" }) -- The completion plugin
     use({ "hrsh7th/cmp-buffer", commit = "62fc67a2b0205136bc3e312664624ba2ab4a9323" }) -- buffer completions
@@ -94,22 +95,25 @@ return packer.startup({
     use({ "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" })
     use "hrsh7th/cmp-cmdline" -- cmdline opts
     use "hrsh7th/cmp-nvim-lsp-signature-help" -- cmdline opts
-    
+
     -- snippets
     use "L3MON4D3/LuaSnip" -- snip engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-    -- use {
-    -- "windwp/nvim-autopairs",
-    --   config = function() require("nvim-autopairs").setup {} end
-    -- }
-    -- use "numToStr/Comment.nvim" -- Comment
-    -- use "JoosepAlviste/nvim-ts-context-commentstring" -- String ts comment
+    -- Treesitter
+    use({
+      "nvim-treesitter/nvim-treesitter",
+      commit = "518e27589c0463af15463c9d675c65e464efc2fe",
+    })
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+    use({ "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" }) -- Autopairs, integrates with both cmp and treesitter
+    use "numToStr/Comment.nvim" -- Comment
+
     -- use "lewis6991/gitsigns.nvim" -- gitsigns
     -- use "kyazdani42/nvim-tree.lua" -- nvim tree
     -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
     -- use "moll/vim-bbye"
-    -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     -- use "ahmedkhalf/project.nvim"
     use {
       "nvim-lualine/lualine.nvim",
@@ -121,7 +125,6 @@ return packer.startup({
     -- use "simrat39/symbols-outline.nvim" -- tags
     -- use "lukas-reineke/indent-blankline.nvim" -- line indent
     use {"akinsho/toggleterm.nvim", tag = 'v2.*'}
-    -- use "nvim-treesitter/nvim-treesitter-refactor"
 
     -- use {
     --   "weilbith/nvim-code-action-menu",
@@ -144,14 +147,10 @@ return packer.startup({
     -- use "skywind3000/asyncrun.vim"
     -- -- notify popup plugin
     -- use "rcarriga/nvim-notify"
-    -- -- Telescope
-    -- use "nvim-telescope/telescope.nvim"
-    -- use "nvim-telescope/telescope-media-files.nvim"
-    -- -- Treesitter
-    -- use {
-    --   "nvim-treesitter/nvim-treesitter",
-    --   run = ":TSUpdate",
-    -- }
+
+    -- Telescope
+    use({ "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" })
+
     -- -- Mark lines plugin
     -- use "chentoast/marks.nvim"
     -- -- Colorizer, hex color etc.
