@@ -6,6 +6,8 @@ map("", ",<Space>", "<Nop>", {})
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+--[[ vim.g.snippets = "luasnip" ]]
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
