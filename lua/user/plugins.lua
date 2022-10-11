@@ -97,7 +97,7 @@ return packer.startup({
     use "hrsh7th/cmp-nvim-lsp-signature-help" -- cmdline opts
 
     -- snippets
-    use "L3MON4D3/LuaSnip" -- snip engine
+    use { "L3MON4D3/LuaSnip" } -- snip engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     -- Treesitter
@@ -108,6 +108,7 @@ return packer.startup({
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     use({ "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" }) -- Autopairs, integrates with both cmp and treesitter
+    use "tpope/vim-surround"
     use "numToStr/Comment.nvim" -- Comment
 
     -- use "lewis6991/gitsigns.nvim" -- gitsigns

@@ -40,6 +40,12 @@ vim.api.nvim_exec(
 map("n", "<A-j>", ":bnext<CR>", {})
 map("n", "<A-k>", ":bprevious<CR>", {})
 vim.keymap.set('n', '<Leader>v', ':buffers<CR>:b')
+-- Re-sources your key mappings… helpful for testing out remapping of keys
+map("n", "<leader>rv", ":source ~/.config/nvim/init.lua<CR>", {})
+map("n", "<leader>ls", ":source ~/.config/nvim/lua/user/snips/configs.lua<CR>", {})
+map("n", "<leader>av", ":tabnew ~/.config/nvim/init.lua<CR>", {})
+map("n", "<leader>ss", ":tabnew ~/Documents/dev/template/solidity/<CR>", {})
+map("n", "<leader>os", ":tabnew ~/.config/nvim/lua/user/snips/luasnippets/solidity.lua<CR>", {})
 
 -- Visual --
 -- Stay in indent mode
