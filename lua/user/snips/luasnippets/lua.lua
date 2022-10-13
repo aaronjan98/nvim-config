@@ -196,7 +196,7 @@ local {} = {}
   "jj"
 ) --}}}
 
--- Tutorial Snippets go here --
+-- Sample Snippets --
 local myFirstSnippet = s("myFirstSnippet", {
   t("hot reload"),
   i(1, "placeholder_text"),
@@ -205,6 +205,11 @@ table.insert(snippets, myFirstSnippet)
 
 local autoSnippet = s({ trig = "digit%d", regTrig = true , hidden = false }, { t("This was auto triggered") })
 table.insert(autosnippets, autoSnippet)
+
+local trigger = s("trigger", {
+	t({"Wow! Text!", "And another line."})
+})
+table.insert(snippets, trigger)
 
 -- End Refactoring --
 

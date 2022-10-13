@@ -47,13 +47,14 @@ map("n", "<leader>av", ":vsp ~/.config/nvim/init.lua<CR>", {})
 map("n", "<leader>ss", ":Lexplore 15 ~/Documents/dev/template/solidity/<CR>", {})
 map("n", "<leader>os", ":vsp ~/.config/nvim/lua/user/snips/luasnippets/solidity.lua<CR>", {})
 
--- Visual --
 -- Stay in indent mode
 map("v", "<", "<gv", {})
 map("v", ">", ">gv", {})
 
 -- keep copied yank in v
 map("v", "p", '"_dP', {})
+map('n', '<C-s>', ':w<cr>', {})
+map('n', 'gb', ':b#<cr>', {})
 
 -- fix Y behaviour
 vim.keymap.set('n', 'Y', 'y$')
@@ -65,5 +66,3 @@ map('i', 'OO', '<Esc>O', {})
 
 -- Nvimtree
 map('n', '<leader>e', ':NvimTreeToggle<cr>', {})
--- null-ls
-map('n', '<leader>f', ':lua vim.lsp.buf.formatting_seq_sync()<cr>', {})

@@ -1,17 +1,19 @@
 -- [[ init.lua ]]
 
-require "user.keys"
-require "user.options"
-require "user.vars"
-require "user.plugins"
-require "user.colorscheme"
-require "user.lsp"
-require "user.cmp"
-require "user.snips"
-require "user.telescope"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.nvim-tree"
-require "user.toggleterm"
-require "user.globals"
+require("user.keys")
+require("user.options")
+require("user.vars")
+require("user.plugins")
+require("user.colorscheme")
+require("user.lsp")
+require("user.cmp")
+require("user.snips")
+require("user.telescope")
+-- require("user.treesitter")
+-- require("user.comment")
+require("user.autopairs")
+require("user.nvim-tree")
+require("user.toggleterm")
+require("user.globals")
+require("user.mason")
+require("user.formatter")

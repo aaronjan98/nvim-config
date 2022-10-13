@@ -9,7 +9,7 @@ if not snip_status_ok then
 end
 
 --[[ require("luasnip.loaders.from_lua").lazy_load() ]]
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/user/snips/snippets" })
+--[[ require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/user/snips/luasnippets" }) ]]
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -54,7 +54,7 @@ cmp.setup {
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),

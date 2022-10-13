@@ -22,6 +22,13 @@ vim.cmd [[
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
 ]]
+-- Format on save
+vim.cmd [[
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+  augroup END
+]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -58,31 +65,43 @@ return packer.startup({
 
     -- Lazy loading:
     -- Load on specific commands
-    use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+    use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
 
     -- Load on a combination of conditions: specific filetypes or commands
     -- Also run code after load (see the "config" key)
     use {
       'w0rp/ale',
-      ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
+      ft = { 'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex' },
       cmd = 'ALEEnable',
       config = 'vim.cmd[[ALEEnable]]'
     }
 
     -- lazy load plugins in .local/share/nvim/site/pack/packer/opt
-    use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install', cmd = 'MarkdownPreview'}
+    use { 'iamcco/markdown-preview.nvim', run = 'cd app && npm install', cmd = 'MarkdownPreview' }
 
     ----colorschemes
     use "folke/tokyonight.nvim"
-    use "shaunsingh/moonlight.nvim"
+    use({ "shaunsingh/moonlight.nvim", branch = "oct", commit = "b26086ce28b33479da374013eb6488eaabad44ed" })
     use 'Yagua/nebulous.nvim'
 
     -- use "lewis6991/impatient.nvim" -- fast startup
 
-    -- LSP
-    use({ "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" }) -- enable LSP
-    use({ "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" }) -- simple to use language server installer
-    use({ "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" }) -- for formatters and linters
+    -- New LSP conf
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+    -- https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
+    use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-lint'
+    use 'mhartington/formatter.nvim'
+
+    -- Old LSP conf
+    --[[ use({ "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" }) -- enable LSP ]]
+    --[[ use({ "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" }) -- simple to use language server installer ]]
+    --[[ use({ "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" }) -- for formatters and linters ]]
+    --
 
     -- use "hrsh7th/nvim-pasta" -- Cycle yank history
 
@@ -101,11 +120,8 @@ return packer.startup({
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     -- Treesitter
-    use({
-      "nvim-treesitter/nvim-treesitter",
-      commit = "518e27589c0463af15463c9d675c65e464efc2fe",
-    })
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
+    -- use({ "nvim-treesitter/nvim-treesitter" })
+    -- use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     use({ "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" }) -- Autopairs, integrates with both cmp and treesitter
     use "tpope/vim-surround"
@@ -120,12 +136,11 @@ return packer.startup({
       "nvim-lualine/lualine.nvim",
       config = function()
         require("toggleterm").setup()
-        -- require("lualine").theme() -- set inner bg transparent
       end
     }
     -- use "simrat39/symbols-outline.nvim" -- tags
     -- use "lukas-reineke/indent-blankline.nvim" -- line indent
-    use {"akinsho/toggleterm.nvim", tag = 'v2.*'}
+    use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
 
     -- use {
     --   "weilbith/nvim-code-action-menu",
@@ -150,7 +165,7 @@ return packer.startup({
     -- use "rcarriga/nvim-notify"
 
     -- Telescope
-    use({ "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" })
+    use({ "nvim-telescope/telescope.nvim" })
 
     -- -- Mark lines plugin
     -- use "chentoast/marks.nvim"
@@ -171,5 +186,6 @@ return packer.startup({
       open_fn = function()
         return require('packer.util').float({ border = 'none' })
       end
-    }},
+    }
+  },
 })
