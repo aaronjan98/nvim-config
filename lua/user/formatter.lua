@@ -1,8 +1,14 @@
+local status_ok, formatter = pcall(require, "formatter")
+
+if not status_ok then
+	return
+end
+
 -- Utilities for creating configurations
 local util = require("formatter.util")
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-require("formatter").setup({
+formatter.setup({
 	-- Enable or disable logging
 	logging = false,
 	-- Set the log level
@@ -38,6 +44,51 @@ require("formatter").setup({
 				}
 			end,
 		},
+		-- formatter isn't working w solidity
+		solidity = {
+			require("formatter.filetypes.javascript").prettier,
+
+			function()
+				if util.get_current_buffer_file_extension() == "sol" then
+					return {
+						exe = "prettier",
+						args = {
+							"--search-parent-directories",
+							"--stdin-filepath",
+							util.escape_path(util.get_current_buffer_file_path()),
+							"--",
+							"-",
+						},
+						stdin = true,
+					}
+				end
+
+				return nil
+			end,
+		},
+		html = { require("formatter.filetypes.html").prettier },
+		css = { require("formatter.filetypes.css").prettier },
+		javascript = { require("formatter.filetypes.javascript").prettier },
+		javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
+		typescript = { require("formatter.filetypes.typescript").prettier },
+		typescriptreact = { require("formatter.filetypes.typescript").prettier },
+		markdown = {
+			function()
+				return {
+					exe = "prettier",
+					args = {
+						"--stdin-filepath",
+						vim.api.nvim_buf_get_name(0),
+						"--parser markdown",
+					},
+					stdin = true,
+				}
+			end,
+		},
+		markdown = { require("formatter.filetypes.markdown").prettier },
+		c = { require("formatter.filetypes.c").clangformat },
+		jsonc = { require("formatter.filetypes.json").prettier },
+		python = { require("formatter.filetypes.python").black },
 
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype

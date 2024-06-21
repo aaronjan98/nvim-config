@@ -29,6 +29,17 @@ vim.cmd [[
     autocmd BufWritePost * FormatWrite
   augroup END
 ]]
+-- Prettier format on save
+vim.cmd [[
+  let g:prettier#autoformat = 0
+  autocmd BufWritePre *.sol Prettier
+]]
+
+-- CtrlSpace custom mapping
+vim.cmd [[
+  let g:CtrlSpaceSetDefaultMapping = 0
+]]
+vim.api.nvim_set_keymap('n', '<Tab>', ':CtrlSpace<CR>', { noremap = true, silent = true })
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -46,11 +57,11 @@ packer.init {
   },
 }
 
-require("lualine").setup {
-  options = {
-    theme = "palenight"
-  }
-}
+-- require("lualine").setup {
+  -- options = {
+    -- theme = "palenight"
+  -- }
+-- }
 
 -- Install your plugins here
 return packer.startup({
@@ -84,6 +95,10 @@ return packer.startup({
     use({ "shaunsingh/moonlight.nvim", branch = "oct", commit = "b26086ce28b33479da374013eb6488eaabad44ed" })
     use 'Yagua/nebulous.nvim'
 
+    -- Syntax
+    use 'sheerun/vim-polyglot'
+    use 'luochen1990/rainbow'
+
     -- use "lewis6991/impatient.nvim" -- fast startup
 
     -- New LSP conf
@@ -96,6 +111,12 @@ return packer.startup({
     use 'mfussenegger/nvim-dap'
     use 'mfussenegger/nvim-lint'
     use 'mhartington/formatter.nvim'
+    use({ 'prettier/vim-prettier',
+      -- cmd = 'npm install && npm install prettier-plugin-solidity',
+      ft = { 'solidity', 'javascript', 'typescript', 'json' },
+      -- branch = 'main',
+      -- commit = 'b9387ca8a27dd0d78512a2a4e1b62921f9276822'
+    })
 
     -- Old LSP conf
     --[[ use({ "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" }) -- enable LSP ]]
@@ -125,19 +146,31 @@ return packer.startup({
 
     use({ "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" }) -- Autopairs, integrates with both cmp and treesitter
     use "tpope/vim-surround"
-    use "numToStr/Comment.nvim" -- Comment
+    use "tpope/vim-commentary"
+    use "tpope/vim-fugitive"
+    -- use "itchyny/vim-gitbranch"
+    -- use "numToStr/Comment.nvim" -- Comment
 
     -- use "lewis6991/gitsigns.nvim" -- gitsigns
-    use "kyazdani42/nvim-tree.lua" -- nvim tree
+    use { "kyazdani42/nvim-tree.lua",
+      config = function ()
+       require('nvim-tree').setup()
+      end
+    }
+
     -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
     -- use "moll/vim-bbye"
     -- use "ahmedkhalf/project.nvim"
-    use {
-      "nvim-lualine/lualine.nvim",
-      config = function()
-        require("toggleterm").setup()
-      end
-    }
+
+    use "vim-ctrlspace/vim-ctrlspace"
+
+    -- consider lightline
+    -- use {
+    --   "nvim-lualine/lualine.nvim",
+    --   config = function()
+    --     require("toggleterm").setup()
+    --   end
+    -- }
     -- use "simrat39/symbols-outline.nvim" -- tags
     -- use "lukas-reineke/indent-blankline.nvim" -- line indent
     use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
@@ -150,6 +183,7 @@ return packer.startup({
     --   end,
     -- } -- better code action menu
 
+    use 'mg979/vim-visual-multi'
     -- -- Cursorhold fix
     -- use {
     --   "antoinemadec/FixCursorHold.nvim",
@@ -164,8 +198,6 @@ return packer.startup({
     -- -- notify popup plugin
     -- use "rcarriga/nvim-notify"
 
-    -- Telescope
-    use({ "nvim-telescope/telescope.nvim" })
 
     -- -- Mark lines plugin
     -- use "chentoast/marks.nvim"
@@ -173,6 +205,17 @@ return packer.startup({
     -- use "norcalli/nvim-colorizer.lua"
     -- -- smooth scrolling
     -- use "karb94/neoscroll.nvim"
+
+    -- Navigation
+    use "pechorin/any-jump.vim"
+    use "rohanorton/lua-gf.nvim"
+    use({ "nvim-telescope/telescope.nvim" })
+    use "christoomey/vim-tmux-navigator"
+    use {'karb94/neoscroll.nvim',
+      config = function ()
+       require('neoscroll').setup()
+      end
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
